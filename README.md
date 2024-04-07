@@ -1,16 +1,25 @@
-# tilawah_tracker
+# Tilawah Tracker
 
-A new Flutter project.
+Tilawah Tracker adalah aplikasi yang membantu Anda melacak progress tilawah Anda.
 
-## Getting Started
+## Fitur
 
-This project is a starting point for a Flutter application.
+- Lihat progress tilawah Anda
+- Tambah progress tilawah Anda
+- Logout
 
-A few resources to get you started if this is your first Flutter project:
+## Cara Menggunakan
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Setelah meng-clone repositori ini, Anda bisa menjalankan aplikasi dengan perintah berikut pada cmd yang sudah diarahkan ke repositori tilawah_tracker:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash=
+flutter-run
+```
+
+## Pengembangan
+
+## Pertanyaan
+
+### Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?
+
+### Apa saja widget yang digunakan untuk menyelesaikan aplikasi ini dan fungsinya masing-masing?
