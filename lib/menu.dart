@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            'Book Tracker',
+            'Tilawah Tracker',
         ),
       ),
       body: SingleChildScrollView(
