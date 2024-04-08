@@ -12,9 +12,11 @@ Tilawah Tracker adalah aplikasi yang membantu Anda melacak progress tilawah Anda
 
 Setelah meng-clone repositori ini, Anda bisa menjalankan aplikasi dengan perintah berikut pada cmd yang sudah diarahkan ke repositori tilawah_tracker:
 
-```bash=
+```
 flutter-run
 ```
+
+Lalu pilih `1` untuk menjalankan aplikasi di Windows.
 
 ## Pengembangan
 
