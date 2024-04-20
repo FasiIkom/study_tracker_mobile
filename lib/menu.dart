@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tilawah_tracker/widgets/left_drawer.dart';
+import 'package:tilawah_tracker/widgets/trackerlist_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class MyHomePage extends StatelessWidget {
             'Tilawah Tracker',
         ),
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
@@ -30,7 +33,7 @@ class MyHomePage extends StatelessWidget {
                     'Menu', // Text yang menandakan tracker
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     ),
                 ),
@@ -48,6 +51,13 @@ class MyHomePage extends StatelessWidget {
                     // Iterasi untuk setiap item
                     return TrackerCard(item);
                 }).toList(),
+              ),
+              const Text(
+                '"Sesungguhnya orang-orang yang selalu membaca kitab Allah dan mendirikan shalat dan menafkahkan sebahagian dari rezeki yang Kami anugerahkan kepada mereka dengan diam-diam dan terang-terangan, mereka itu mengharapkan perniagaan yang tidak akan merugi." (QS. Fatir: 29)',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                ),
               ),
             ],
           ),
@@ -80,6 +90,14 @@ class TrackerCard extends StatelessWidget {
               ..hideCurrentSnackBar()
               ..showSnackBar(SnackBar(
                   content: Text("Kamu telah menekan tombol ${item.name}!")));
+                  if (item.name == "Tambah Progress") {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TrackerFormPage(),
+                          ),
+                      );
+                  }
           },
           child: Container(
             // Container untuk menyimpan Icon dan Text
