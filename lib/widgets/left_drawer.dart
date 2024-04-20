@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tilawah_tracker/menu.dart';
-import 'package:tilawah_tracker/widgets/trackerlist_form.dart';
+import 'package:tilawah_tracker/screens/menu.dart';
+import 'package:tilawah_tracker/screens/trackerlist_form.dart';
 
 class LeftDrawer extends StatelessWidget {
     const LeftDrawer({super.key});
@@ -27,7 +27,11 @@ class LeftDrawer extends StatelessWidget {
                                     ),
                                     Padding(padding: EdgeInsets.all(10)),
                                     Text("Aplikasi Untuk Mencatat Bacaan Al-Qur'an Anda",
-                                        // TODO: Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                        )
                                     ),
                                 ],
                             ),                    

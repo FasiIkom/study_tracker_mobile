@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tilawah_tracker/menu.dart';
+import 'package:tilawah_tracker/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
