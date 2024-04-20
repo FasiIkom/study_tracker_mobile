@@ -176,3 +176,16 @@ onTap: () {
 - **TrackerCard**: Berfungsi untuk menampilkan beberapa tombol yang mengarahkan pengguna ke berbagai fitur pilihan. Mengextend `StatelessWidget` karena tidak perlu diubah.
 
 </details>
+
+<details>
+<summary>
+
+  <b>Apa perbedaan antara `Navigator.push()` dan `Navigator.pushReplacement()`? Bagaimana cara penggunaan kedua metode tersebut yang tepat `StatelessWidget`</b>
+
+</summary>
+
+- **MyApp**: Berfungsi sebagai root widget pada aplikasi ini. `MyApp` adalah widget yang pertama kali dipanggil ketika aplikasi dijalankan.
+- **MyHomePage**: Diatur sebagai `home` pada `MyApp`. Widget ini adalah widget pertama yang akan ditampilkan pada saat aplikasi dijalankan.
+- **TrackerCard**: Berfungsi untuk menampilkan beberapa tombol yang mengarahkan pengguna ke berbagai fitur pilihan. Mengextend `StatelessWidget` karena tidak perlu diubah.
+
+</details>
