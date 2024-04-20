@@ -179,9 +179,40 @@ onTap: () {
 
 <details>
 <summary>
+  <b>Apa perbedaan antara Navigator.push() dan Navigator.pushReplacement()? Bagaimana cara penggunaan kedua metode tersebut yang tepat `StatelessWidget`</b>
+</summary>
 
-  <b>Apa perbedaan antara `Navigator.push()` dan `Navigator.pushReplacement()`? Bagaimana cara penggunaan kedua metode tersebut yang tepat `StatelessWidget`</b>
+- **MyApp**: Berfungsi sebagai root widget pada aplikasi ini. `MyApp` adalah widget yang pertama kali dipanggil ketika aplikasi dijalankan.
+- **MyHomePage**: Diatur sebagai `home` pada `MyApp`. Widget ini adalah widget pertama yang akan ditampilkan pada saat aplikasi dijalankan.
+- **TrackerCard**: Berfungsi untuk menampilkan beberapa tombol yang mengarahkan pengguna ke berbagai fitur pilihan. Mengextend `StatelessWidget` karena tidak perlu diubah.
 
+</details>
+
+<details>
+<summary>
+  <b>Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!</b>
+</summary>
+
+- **MyApp**: Berfungsi sebagai root widget pada aplikasi ini. `MyApp` adalah widget yang pertama kali dipanggil ketika aplikasi dijalankan.
+- **MyHomePage**: Diatur sebagai `home` pada `MyApp`. Widget ini adalah widget pertama yang akan ditampilkan pada saat aplikasi dijalankan.
+- **TrackerCard**: Berfungsi untuk menampilkan beberapa tombol yang mengarahkan pengguna ke berbagai fitur pilihan. Mengextend `StatelessWidget` karena tidak perlu diubah.
+
+</details>
+
+<details>
+<summary>
+  <b>Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!</b>
+</summary>
+
+- **MyApp**: Berfungsi sebagai root widget pada aplikasi ini. `MyApp` adalah widget yang pertama kali dipanggil ketika aplikasi dijalankan.
+- **MyHomePage**: Diatur sebagai `home` pada `MyApp`. Widget ini adalah widget pertama yang akan ditampilkan pada saat aplikasi dijalankan.
+- **TrackerCard**: Berfungsi untuk menampilkan beberapa tombol yang mengarahkan pengguna ke berbagai fitur pilihan. Mengextend `StatelessWidget` karena tidak perlu diubah.
+
+</details>
+
+<details>
+<summary>
+  <b>Bagaimana penerapan clean architecture pada aplikasi Flutter?</b>
 </summary>
 
 - **MyApp**: Berfungsi sebagai root widget pada aplikasi ini. `MyApp` adalah widget yang pertama kali dipanggil ketika aplikasi dijalankan.
