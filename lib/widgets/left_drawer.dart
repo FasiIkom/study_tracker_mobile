@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tilawah_tracker/screens/list_progress.dart';
 import 'package:tilawah_tracker/screens/menu.dart';
 import 'package:tilawah_tracker/screens/trackerlist_form.dart';
 
@@ -17,7 +18,7 @@ class LeftDrawer extends StatelessWidget {
                             child: Column(
                                 children: [
                                     Text(
-                                        'Tilawah Tracker',
+                                        'Study Tracker',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 30,
@@ -26,7 +27,7 @@ class LeftDrawer extends StatelessWidget {
                                         ),
                                     ),
                                     Padding(padding: EdgeInsets.all(10)),
-                                    Text("Aplikasi Untuk Mencatat Bacaan Al-Qur'an Anda",
+                                    Text("Aplikasi Untuk Melacak Progress Belajar Anda",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 15,
@@ -58,6 +59,17 @@ class LeftDrawer extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => TrackerFormPage(),
                                 ),
+                            );
+                        },
+                    ),
+                    ListTile(
+                        leading: const Icon(Icons.library_books_rounded),
+                        title: const Text('Daftar Progress'),
+                        onTap: () {
+                            // Route menu ke halaman progress
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ProgressPage()),
                             );
                         },
                     ),

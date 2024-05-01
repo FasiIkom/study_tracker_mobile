@@ -15,7 +15,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            'Tilawah Tracker',
+            'Study Tracker',
         ),
       ),
       drawer: const LeftDrawer(),
@@ -53,7 +53,7 @@ class MyHomePage extends StatelessWidget {
                 }).toList(),
               ),
               const Text(
-                '"Sesungguhnya orang-orang yang selalu membaca kitab Allah dan mendirikan shalat dan menafkahkan sebahagian dari rezeki yang Kami anugerahkan kepada mereka dengan diam-diam dan terang-terangan, mereka itu mengharapkan perniagaan yang tidak akan merugi." (QS. Fatir: 29)',
+                '"Education is the most powerful weapon you can use to change the world." – Nelson Mandela',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,

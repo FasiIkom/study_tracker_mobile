@@ -1,5 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:tilawah_tracker/screens/menu.dart';
 import 'package:tilawah_tracker/widgets/left_drawer.dart';
+import 'package:intl/intl.dart';
+
 
 class TrackerFormPage extends StatefulWidget {
     const TrackerFormPage({super.key});
@@ -10,11 +17,13 @@ class TrackerFormPage extends StatefulWidget {
 
 class _TrackerFormPageState extends State<TrackerFormPage> {
     final _formKey = GlobalKey<FormState>();
-    int _juz = 0;
-    String _namasurah = "";
-    int _ayat = 0;
+    String _subject = "";
+    String _startStudy = "";
+    int _progress = 0;
+    String _catatan = "";
     @override
     Widget build(BuildContext context) {
+        final request = context.watch<CookieRequest>();
         return Scaffold(
             appBar: AppBar(
                 title: const Center(
@@ -36,26 +45,20 @@ class _TrackerFormPageState extends State<TrackerFormPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                     decoration: InputDecoration(
-                                        hintText: "Juz",
-                                        labelText: "Juz",
+                                        hintText: "Subject",
+                                        labelText: "Subject",
                                         border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0),
                                         ),
                                     ),
                                     onChanged: (String? value) {
                                         setState(() {
-                                        _juz = int.tryParse(value!) ?? 0;
+                                        _subject = value!;
                                         });
                                     },
                                     validator: (String? value) {
                                         if (value == null || value.isEmpty) {
-                                            return "Juz tidak boleh kosong!";
-                                        }
-                                        if (int.tryParse(value) == null) {
-                                            return "Juz harus berupa angka!";
-                                        }
-                                        if (_juz < 1 || _juz > 30) {
-                                            return "Juz harus diantara 1-30!";
+                                        return "Subject tidak boleh kosong!";
                                         }
                                         return null;
                                     },
@@ -65,23 +68,26 @@ class _TrackerFormPageState extends State<TrackerFormPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                     decoration: InputDecoration(
-                                        hintText: "Nama Surah",
-                                        labelText: "Nama Surah",
+                                        hintText: "(DD/MM/YYYY)",
+                                        labelText: "Start Study",
                                         border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0),
                                         ),
                                     ),
                                     onChanged: (String? value) {
                                         setState(() {
-                                        _namasurah = value!;
+                                        _startStudy = value!;
                                         });
                                     },
                                     validator: (String? value) {
                                         if (value == null || value.isEmpty) {
-                                        return "Nama Surah tidak boleh kosong!";
+                                            return "Tanggal mulai belajar tidak boleh kosong!";
                                         }
-                                        if (int.tryParse(value) != null) {
-                                            return "Nama Surah tidak valid!";
+                                        try {
+                                            // ignore: unused_local_variable
+                                            var testDate = DateFormat('dd/MM/yyyy').parseStrict(value);
+                                        } catch (e) {
+                                            return "Tanggal mulai belajar tidak valid!";
                                         }
                                         return null;
                                     },
@@ -91,27 +97,47 @@ class _TrackerFormPageState extends State<TrackerFormPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                     decoration: InputDecoration(
-                                        hintText: "Ayat terakhir yang dibaca",
-                                        labelText: "Ayat terakhir yang dibaca",
+                                        hintText: "0-100",
+                                        labelText: "Progress (%)",
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(5.0),
                                         ),
                                     ),
                                     onChanged: (String? value) {
                                         setState(() {
-                                        _ayat = int.tryParse(value!) ?? 0;
+                                        _progress = int.tryParse(value!) ?? 0;
                                         });
                                     },
                                     validator: (String? value) {
                                         if (value == null || value.isEmpty) {
-                                        return "Ayat terakhir yang dibaca tidak boleh kosong!";
+                                        return "Progress tidak boleh kosong!";
                                         }
-                                        if (int.tryParse(value) == null) {
-                                            return "Ayat terakhir yang dibaca harus berupa angka!";
+                                        if (int.tryParse(value) == 0) {
+                                            return "Progress harus berupa angka!";
                                         }
-                                        if (_ayat < 1) {
-                                            return "Ayat terakhir yang dibaca tidak valid!";
+                                        if (_progress < 1) {
+                                            return "Progress tidak valid!";
                                         }
+                                        return null;
+                                    },
+                                ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: "Catatan",
+                                        labelText: "Catatan",
+                                        border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                    ),
+                                    onChanged: (String? value) {
+                                        setState(() {
+                                        _catatan = value!;
+                                        });
+                                    },
+                                    validator: (String? value) {
                                         return null;
                                     },
                                 ),
@@ -124,36 +150,38 @@ class _TrackerFormPageState extends State<TrackerFormPage> {
                                         style: ButtonStyle(
                                             backgroundColor: MaterialStateProperty.all(Colors.green[900]!),
                                         ),
-                                        onPressed: () {
+                                        onPressed: () async {
                                             if (_formKey.currentState!.validate()) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                      return AlertDialog(
-                                                          title: const Text('Progress berhasil tersimpan'),
-                                                          content: SingleChildScrollView(
-                                                              child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment.start,
-                                                                  children: [
-                                                                      Text('Juz: $_juz'),
-                                                                      Text('Nama Surah: $_namasurah'),
-                                                                      Text('Ayat: $_ayat'),
-                                                                  ],
-                                                              ),
-                                                          ),
-                                                          actions: [
-                                                              TextButton(
-                                                                  child: const Text('OK'),
-                                                                  onPressed: () {
-                                                                      Navigator.pop(context);
-                                                                      _formKey.currentState!.reset();
-                                                                  },
-                                                              ),
-                                                          ],
-                                                      );
-                                                  },
-                                              );
+                                                // Kirim ke Django dan tunggu respons
+                                                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                                                final response = await request.postJson(
+                                                    "http://localhost:8000/create-flutter/",
+                                                    jsonEncode(<String, String>{
+                                                        'subject': _subject,
+                                                        'startStudy': _startStudy,
+                                                        'progress': _progress.toString(),
+                                                        'catatan': _catatan,
+                                                    // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                                                    }),
+                                                );
+                                                if (context.mounted) {
+                                                    if (response['status'] == 'success') {
+                                                        ScaffoldMessenger.of(context)
+                                                            .showSnackBar(const SnackBar(
+                                                        content: Text("Progress baru berhasil disimpan!"),
+                                                        ));
+                                                        Navigator.pushReplacement(
+                                                            context,
+                                                            MaterialPageRoute(builder: (context) => MyHomePage()),
+                                                        );
+                                                    } else {
+                                                        ScaffoldMessenger.of(context)
+                                                            .showSnackBar(const SnackBar(
+                                                            content:
+                                                                Text("Terdapat kesalahan, silakan coba lagi."),
+                                                        ));
+                                                    }
+                                                }
                                             }
                                         },
                                         child: const Text(
